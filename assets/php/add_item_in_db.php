@@ -1,5 +1,5 @@
 <?php
-    if(!isset($_POST["item_id"]) || !isset($_POST["title"]) || !isset($_POST["price"]) || !isset($_POST["shipping"]) || !isset($_POST["src"])){
+    if(!isset($_POST["item_id"]) || !isset($_POST["title"]) || !isset($_POST["price"]) || !isset($_POST["shipping"])){
         echo -1;
         exit();
     }
@@ -13,12 +13,12 @@
     $result = mysqli_query($conn,$query) or die("Query error". mysqli_error($conn));
     $row = mysqli_fetch_array($result);
     if(mysqli_num_rows($result) == 0){
-    //Inserimento dell'oggetto nella tabella item
-    $query = "INSERT INTO item(item_id, title, category, price, shipping, src) VALUES ('$item_id','$title', 'searched_items', '$price', '$shipping', '$src')";
-    $result = mysqli_query($conn,$query) or die("Query error". mysqli_error($conn));
-    $query = "SELECT id FROM item WHERE item_id = '$item_id' LIMIT 1";
-    $result = mysqli_query($conn,$query) or die("Query error". mysqli_error($conn));
-    $row = mysqli_fetch_assoc($result);
+        //Inserimento dell'oggetto nella tabella item
+        $query = "INSERT INTO item(item_id, title, category, price, shipping, src) VALUES ('$item_id','$title', 'searched_items', '$price', '$shipping', '$src')";
+        $result = mysqli_query($conn,$query) or die("Query error". mysqli_error($conn));
+        $query = "SELECT id FROM item WHERE item_id = '$item_id' LIMIT 1";
+        $result = mysqli_query($conn,$query) or die("Query error". mysqli_error($conn));
+        $row = mysqli_fetch_assoc($result);
     }
     $id = $row["id"];
     mysqli_close($conn);

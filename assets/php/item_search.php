@@ -5,7 +5,6 @@
         exit();
     }
 
-
     $client_id = "id";
     $client_secret = "secret";
     $curl = curl_init();

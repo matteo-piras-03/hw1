@@ -1,2 +1,2 @@
 # hw1
-
+"Replica" di eBay, che permette a un utente registrato di poter salvare oggetti e inserirli nel carrello (non si possono inserire nel carrello due oggetti uguali). Nelle pagine in cui sono presenti gli oggetti, è possibile cliccare sullo sfondo di un oggetto per aprire la pagina corrispondente. Scorrendo sull'immagine di un oggetto è possibile inserirlo negli oggetti salvati (se l'utente ha effettuato l'accesso). Inoltre, è presente una ricerca oggetti che sfrutta l'API di eBay (che purtroppo non ritorna immagini). L'utente può cliccare sul tasto generato, che caricherà l'oggetto corrispondente nel database e l'utente potrà quindi inserirlo nel carrello o negli oggetti salvati.

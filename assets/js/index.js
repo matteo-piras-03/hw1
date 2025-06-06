@@ -143,10 +143,16 @@ function s1_3_button_click(){
 //section 4
 
 const s4_item_list = document.querySelector("#section-4 .item-list");
-fetch("assets/php/get_storepage_items.php?category=home_garden&title=ZIPPER").then(onResponse, onError).then(json => onItemJson(json, s4_item_list));
+fetch("assets/php/get_storepage_items.php?category=home_garden&title=ZIPPER").then(onResponse, onError).then(onItemJsonParam(s4_item_list));
 
 function onResponse(response){
     return response.json();
+}
+
+function onItemJsonParam(item_list){
+    return function(json){
+        onItemJson(json, item_list);
+    }
 }
 
 async function onItemJson(json, item_list){
@@ -204,19 +210,24 @@ async function onItemJson(json, item_list){
 //section 5
 
 const s5_item_list = document.querySelector("#section-5 .item-list");
-fetch("assets/php/get_storepage_items.php?category=refurbished").then(onResponse, onError).then(json => onItemJson(json, s5_item_list));
+fetch("assets/php/get_storepage_items.php?category=refurbished").then(onResponse, onError).then(onItemJsonParam(s5_item_list));
 
 //REST_API
 //exchange-api https://github.com/fawazahmed0/exchange-api
 //Questa api restituisce il tasso di cambio tra diverse valute
 async function get_currency_exchange(old_currency){
-    return fetch("assets/php/get_currency_exchange.php?old_currency=" + encodeURIComponent(old_currency)).then(onResponse, onError).then(json => onJson(json, old_currency));
+    return fetch("assets/php/get_currency_exchange.php?old_currency=" + encodeURIComponent(old_currency)).then(onResponse, onError).then(onJsonParam(old_currency));
 }
 
 function onError(error) {
     console.log("Error: " + error);
 }
 
+function onJsonParam(currency){
+    return function(json){
+        onJson(json, currency)
+    }
+}
 
 function onJson(json, old_currency) {
     //json[eur] è un oggetto ha come proprieta' le valute e i rispettivi tassi di cambio rispetto all'euro

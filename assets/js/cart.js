@@ -139,7 +139,7 @@ async function currency_exchange_click(event){
 }
 
 async function get_currency_exchange(old_currency){
-    return fetch("get_currency_exchange.php?old_currency=" + encodeURIComponent(old_currency)).then(onCurrencyResponse, onError).then(json => onCurrencyJson(json, old_currency));
+    return fetch("get_currency_exchange.php?old_currency=" + encodeURIComponent(old_currency)).then(onCurrencyResponse, onError).then(onCurrencyJsonParam(old_currency));
 }
 
 function onError(error) {
@@ -150,8 +150,14 @@ function onCurrencyResponse(response) {
     return response.json();
 }
 
+function onCurrencyJsonParam(currency){
+    return function(json){
+        return onCurrencyJson(json, currency);
+    }
+}
+
 function onCurrencyJson(json, old_currency) {
-    console.log(json);
+    console.log(old_currency);
     const exchange_rate = json[old_currency][currency_selected];
     previous_currency_selected = currency_selected;
     return exchange_rate;
